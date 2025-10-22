@@ -1,6 +1,6 @@
 services:
   - name: aws-policies
-    url: https://github.com/yourusername/cloudguard-aws-pac
+    url: https://github.com/kdahal/cloudguard-aws-pac
 bundles:
   authz:
     service: aws-policies
