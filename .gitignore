@@ -1,4 +1,130 @@
-echo ".terraform/" >> .gitignore
-echo "*.zip" >> .gitignore
-echo "__pycache__/" >> .gitignore
-echo "*.pyc" >> .gitignore
+# =========================================
+# CloudGuard: AWS Policy-as-Code Git Ignore
+# =========================================
+# Covers Terraform, OPA, Python, Lambda, CI/CD, and common IDEs
+# =========================================
+
+# ---------------------------
+# Terraform
+# ---------------------------
+.terraform/
+terraform.tfstate
+terraform.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore Terraform plan files
+*.tfplan
+*.tfstate.backup
+*.tfvars
+*.tfvars.json
+
+# Ignore zip archives (e.g., Lambda packages)
+*.zip
+
+# ---------------------------
+# AWS Lambda (Python)
+# ---------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-wheel-metadata/
+site-packages/
+dist/
+build/
+.eggs/
+*.egg-info/
+*.egg
+
+# ---------------------------
+# Open Policy Agent (OPA)
+# ---------------------------
+opa/data.json
+opa/tmp/
+opa/bundle.tar.gz
+opa/output/
+opa/.opa-env/
+
+# ---------------------------
+# Logs and Temp Files
+# ---------------------------
+*.log
+*.tmp
+*.swp
+*.bak
+*.old
+
+# ---------------------------
+# GitHub Actions / CI/CD
+# ---------------------------
+# Cache or artifact folders
+.github/workflows/*.lock
+.github/actions/cache/
+actions-runner/
+coverage/
+reports/
+*.coverage
+*.report.xml
+
+# ---------------------------
+# IDEs & Editors
+# ---------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# ---------------------------
+# OS-specific
+# ---------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.nfs*
+
+# ---------------------------
+# Security / Secrets (never commit)
+# ---------------------------
+*.pem
+*.key
+*.crt
+*.env
+.env.*
+secrets.json
+credentials.json
+
+# ---------------------------
+# Misc
+# ---------------------------
+# Ignore archive, binary, or backup files
+*.tar
+*.gz
+*.zip
+*.7z
+*.bak
+*.tmp
+*.orig
+
+# Ignore init script backups
+init-repo.sh.bak
