@@ -1,0 +1,33 @@
+name: Test and Deploy OPA Policies
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up OPA
+        run: |
+          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          chmod +x opa
+          sudo mv opa /usr/local/bin/
+      
+      - name: Test OPA Policies
+        run: opa test opa/policies/ -v
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - name: Deploy AWS Infrastructure
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
