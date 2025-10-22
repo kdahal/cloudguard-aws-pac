@@ -1,4 +1,4 @@
-name: Test and Deploy OPA Policies
+name: Test and Deploy CloudGuard AWS Policies
 
 on:
   push:
@@ -8,26 +8,54 @@ on:
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # ---------------------------
+      # Checkout code
+      # ---------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # ---------------------------
+      # Set up OPA (safe download)
+      # ---------------------------
       - name: Set up OPA
         run: |
-          curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-          chmod +x opa
-          sudo mv opa /usr/local/bin/
-      
-      - name: Test OPA Policies
-        run: opa test opa/policies/ -v
+          echo "Downloading OPA..."
+          curl -L -o /tmp/opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+          chmod +x /tmp/opa
+          sudo mv /tmp/opa /usr/local/bin/opa
+          opa version
 
+      # ---------------------------
+      # Run OPA tests
+      # ---------------------------
+      - name: Test OPA Policies
+        run: |
+          echo "Running OPA policy tests..."
+          opa test opa/policies/ -v
+
+      # ---------------------------
+      # Setup Terraform
+      # ---------------------------
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.8.5
 
+      # ---------------------------
+      # Terraform Init and Apply
+      # ---------------------------
       - name: Deploy AWS Infrastructure
         run: |
           cd terraform
           terraform init
           terraform apply -auto-approve
+
+      # ---------------------------
+      # Optional: Post Deployment Info
+      # ---------------------------
+      - name: Output Lambda Info
+        run: |
+          cd terraform
+          terraform output

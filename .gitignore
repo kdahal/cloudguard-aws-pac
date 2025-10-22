@@ -15,15 +15,10 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
-
-# Ignore Terraform plan files
 *.tfplan
-*.tfstate.backup
 *.tfvars
 *.tfvars.json
-
-# Ignore zip archives (e.g., Lambda packages)
-*.zip
+*.tfstate.backup
 
 # ---------------------------
 # AWS Lambda (Python)
@@ -46,6 +41,7 @@ build/
 .eggs/
 *.egg-info/
 *.egg
+*.zip
 
 # ---------------------------
 # Open Policy Agent (OPA)
@@ -55,6 +51,8 @@ opa/tmp/
 opa/bundle.tar.gz
 opa/output/
 opa/.opa-env/
+*.wasm
+*.cache
 
 # ---------------------------
 # Logs and Temp Files
@@ -64,11 +62,11 @@ opa/.opa-env/
 *.swp
 *.bak
 *.old
+*.orig
 
 # ---------------------------
 # GitHub Actions / CI/CD
 # ---------------------------
-# Cache or artifact folders
 .github/workflows/*.lock
 .github/actions/cache/
 actions-runner/
@@ -113,23 +111,17 @@ Desktop.ini
 .env.*
 secrets.json
 credentials.json
+secrets/
+
+# ---------------------------
+# Node.js (if used in CI/CD or Lambda layers)
+# ---------------------------
+node_modules/
 
 # ---------------------------
 # Misc
 # ---------------------------
-# Ignore archive, binary, or backup files
 *.tar
 *.gz
-*.zip
 *.7z
-*.bak
-*.tmp
-*.orig
-
-# Ignore init script backups
 init-repo.sh.bak
-
-.terraform/
-terraform.tfstate*
-*.zip
-

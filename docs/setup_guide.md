@@ -1,6 +1,11 @@
-# Setup Guide
+# CloudGuard Setup Guide
 
-1. Clone the repository:
+1. Clone this repository.
+2. Initialize Terraform:
    ```bash
-   git clone https://github.com/yourusername/cloudguard-aws-pac.git
-   cd cloudguard-aws-pac
+   cd terraform/environments/dev
+   terraform init
+   terraform plan
+Run OPA policy tests:
+opa test opa/policies/ -v
+
