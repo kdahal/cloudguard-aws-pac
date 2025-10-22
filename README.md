@@ -1,10 +1,10 @@
 
-CloudGuard: AWS Policy-as-Code
+☁️ CloudGuard: AWS Policy-as-Code
 
 CloudGuard enforces AWS security best practices using OPA/Rego, Terraform, and AWS Lambda.
 It provides preventative, detective, and auto-remediation controls.
 
-Components
+🔧 Components
 
 OPA — Policy-as-Code rules and compliance tests
 
@@ -13,3 +13,9 @@ Terraform — Infrastructure as Code for deploying security controls
 Lambda — Automated remediation functions
 
 GitHub Actions — CI/CD pipeline for validation and enforcement
+
+🚀 Quick Start
+chmod +x init-repo.sh
+./init-repo.sh
+cd terraform/environments/dev
+terraform init && terraform apply

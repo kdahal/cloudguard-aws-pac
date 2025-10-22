@@ -1,127 +1,34 @@
-# =========================================
-# CloudGuard: AWS Policy-as-Code Git Ignore
-# =========================================
-# Covers Terraform, OPA, Python, Lambda, CI/CD, and common IDEs
-# =========================================
-
-# ---------------------------
 # Terraform
-# ---------------------------
 .terraform/
-terraform.tfstate
-terraform.tfstate.*
+*.tfstate
+*.tfstate.*
+*.tfvars
 crash.log
 override.tf
 override.tf.json
-*_override.tf
-*_override.tf.json
-*.tfplan
-*.tfvars
-*.tfvars.json
-*.tfstate.backup
 
-# ---------------------------
-# AWS Lambda (Python)
-# ---------------------------
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.so
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-pip-wheel-metadata/
-site-packages/
-dist/
-build/
-.eggs/
-*.egg-info/
-*.egg
-*.zip
-
-# ---------------------------
-# Open Policy Agent (OPA)
-# ---------------------------
-opa/data.json
-opa/tmp/
-opa/bundle.tar.gz
-opa/output/
-opa/.opa-env/
+# OPA / Rego
 *.wasm
 *.cache
-
-# ---------------------------
-# Logs and Temp Files
-# ---------------------------
-*.log
-*.tmp
-*.swp
-*.bak
-*.old
-*.orig
-
-# ---------------------------
-# GitHub Actions / CI/CD
-# ---------------------------
-.github/workflows/*.lock
-.github/actions/cache/
-actions-runner/
-coverage/
-reports/
-*.coverage
-*.report.xml
-
-# ---------------------------
-# IDEs & Editors
-# ---------------------------
 .vscode/
 .idea/
-*.sublime-workspace
-*.sublime-project
-*.code-workspace
 
-# ---------------------------
-# OS-specific
-# ---------------------------
-# macOS
+# Python / Lambda
+__pycache__/
+*.pyc
+*.zip
+
+# System / Misc
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
 Thumbs.db
-ehthumbs.db
-Desktop.ini
+.env
+*.log
 
-# Linux
-*~
-.nfs*
+# Node
+node_modules/
 
-# ---------------------------
-# Security / Secrets (never commit)
-# ---------------------------
+# Secrets / Keys
 *.pem
 *.key
 *.crt
-*.env
-.env.*
-secrets.json
-credentials.json
 secrets/
-
-# ---------------------------
-# Node.js (if used in CI/CD or Lambda layers)
-# ---------------------------
-node_modules/
-
-# ---------------------------
-# Misc
-# ---------------------------
-*.tar
-*.gz
-*.7z
-init-repo.sh.bak
