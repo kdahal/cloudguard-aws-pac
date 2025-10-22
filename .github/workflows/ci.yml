@@ -1,4 +1,4 @@
-name: Validate and Deploy CloudGuard Policies
+name: Validate and Deploy CloudGuard Policies ci
 
 on:
   push:

@@ -17,18 +17,16 @@ jobs:
         uses: actions/checkout@v4
 
       # ---------------------------
-      # Set up OPA (safe download)
+      # Set up OPA using official action
       # ---------------------------
       - name: Set up OPA
-        run: |
-          echo "Downloading OPA..."
-          curl -L -o /tmp/opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-          chmod +x /tmp/opa
-          sudo mv /tmp/opa /usr/local/bin/opa
-          opa version
+        uses: open-policy-agent/setup-opa@v1
+
+      - name: Verify OPA installation
+        run: opa version
 
       # ---------------------------
-      # Run OPA tests
+      # Run OPA policy tests
       # ---------------------------
       - name: Test OPA Policies
         run: |
@@ -53,7 +51,7 @@ jobs:
           terraform apply -auto-approve
 
       # ---------------------------
-      # Optional: Post Deployment Info
+      # Optional: Output Lambda Info
       # ---------------------------
       - name: Output Lambda Info
         run: |
