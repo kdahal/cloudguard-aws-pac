@@ -1,6 +1,5 @@
 package aws.s3.encryption
 
-# deny contains reasons why a bucket violates encryption
 deny[reason] {
     input.resource_type == "aws_s3_bucket"
     not input.configuration.ServerSideEncryptionConfiguration
