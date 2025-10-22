@@ -128,3 +128,8 @@ credentials.json
 
 # Ignore init script backups
 init-repo.sh.bak
+
+.terraform/
+terraform.tfstate*
+*.zip
+
